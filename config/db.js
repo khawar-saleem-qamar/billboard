@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require("dotenv").config()
 
-const connection = mongoose.createConnection('mongodb://127.0.0.1:27017/billboard')
+const connection = mongoose.createConnection(process.env.MONGO_URL)
     .on('open',()=>{
     console.log('MongoDb connected');
 }).on('error',()=>{
