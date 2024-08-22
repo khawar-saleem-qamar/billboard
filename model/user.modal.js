@@ -8,7 +8,6 @@ const userSchema = new Schema({
     number:{
         type:String,
         require:true,
-        unique:true,
     },
     name:{
         type:String,

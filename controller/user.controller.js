@@ -12,15 +12,21 @@ exports.register = async(req,res,next)=>{
         var existingCnic = await usermodel.findOne({cnic});
         if(existingCnic){
             res.json({status: false, sucess: "Cnic already in use!"})
+            return;
         }
 
         existingCnic = await usermodel.findOne({number});
         if(existingCnic){
             res.json({status: false, sucess: "Number already in use!"})
+            return;
         }
 
         const response = await UserService.registerUser(number,name,img,cnic,pass,address,dob,cat,deviceid,of);
-        res.json({status:true,sucess:"User registered Sucessfully"});
+        if(res.status == false){
+            res.json(response);
+        }else{
+            res.json({status:true,sucess:"User registered Sucessfully"});
+        }
     } catch (e){
         console.log(e)
         res.json({status:false,sucess:"server error controller register"});

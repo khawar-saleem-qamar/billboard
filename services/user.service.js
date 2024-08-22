@@ -8,7 +8,7 @@ class UserService{
             return await creteuser.save();
         } catch(e){
             console.log(e)
-            res.json({status:false,sucess:"server error service register"});
+            return {status:false,sucess:"server error service register"};
         }
    }
 
